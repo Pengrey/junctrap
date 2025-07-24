@@ -57,4 +57,5 @@ The core of this tool's functionality lies in the manipulation of how Google Chr
 3.  **Session Creation:** Because this shadow profile doesn't have the user's encrypted session tokens, the user is prompted to log in to their accounts again. This action creates new, session tokens within the shadow profile.
 4.  **Cookie Dumping:** The `dump` command can then be used to extract these newly created session cookies from the shadow profile through the remote debugging protocol and due to the `user-data-dir` not being the default one it goes around current [mitigations](https://developer.chrome.com/blog/remote-debugging-port).
 5.  **Restoration and Session Merging:** After the cookies are dumped, the `restore` command reverts the changes. It removes the directory junction and restores the original Chrome shortcut. Due to what seems to be a behavioral quirk in Chrome, the session created in the shadow profile is then merged with the original user profile, this can be seen bellow:
+
 [Screencast_20250717_155648.webm](https://github.com/user-attachments/assets/a5730cfe-155e-4b5f-b49c-256bc856d577)
