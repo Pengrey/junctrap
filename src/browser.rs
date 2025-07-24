@@ -22,7 +22,7 @@ pub async fn dump_cookies(username: &str) -> Result<(), Box<dyn std::error::Erro
 
         let cookies = browser.get_cookies().await?;
 
-        cookies.iter().for_each(|cookie| println!("[>] Name: {}\n    Domain {}\n    Expires: {}", cookie.name, cookie.domain, cookie.expires));
+        cookies.iter().for_each(|cookie| println!("[>] {:?}", cookie));
 
         browser.close().await?;
         browser.wait().await?;
