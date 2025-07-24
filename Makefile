@@ -12,7 +12,6 @@ endef
 
 # Targets for different architectures
 all: x64 x86
-debug: x64-debug x86-debug
 
 # x64 builds
 x64:
@@ -20,20 +19,10 @@ x64:
 	@ $(CARGO) build --release --target x86_64-pc-windows-gnu
 	@ $(call log_success)
 
-x64-debug:
-	@ $(call log_info,[x64|debug] Compiling...)
-	@ $(CARGO) build --release --features debug --target x86_64-pc-windows-gnu
-	@ $(call log_success)
-
 # x86 builds
 x86:
 	@ $(call log_info,[x86] Compiling...)
 	@ $(CARGO) build --release --target i686-pc-windows-gnu
-	@ $(call log_success)
-
-x86-debug:
-	@ $(call log_info,[x86|debug] Compiling...)
-	@ $(CARGO) build --release --features debug --target i686-pc-windows-gnu
 	@ $(call log_success)
 
 clean:

@@ -4,14 +4,17 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+clap = { version = "4.5.38", features = ["derive"] }
+tracing = "0.1.37"
+tracing-subscriber = "0.3.17"
+junction = "1.2.0"
 widestring = "1.2.0"
 windows = { version = "0.60.0", features = [
     "Win32_Foundation",
     "Win32_System_Com",
     "Win32_System_Ole",
     "Win32_UI_Shell",
-    "Win32_UI_WindowsAndMessaging",
 ] }
-
-[features]
-debug = []
+futures = "0.3"
+async-std = "1.13.1"
+chromiumoxide = { git = "https://github.com/mattsse/chromiumoxide", branch = "main"}

